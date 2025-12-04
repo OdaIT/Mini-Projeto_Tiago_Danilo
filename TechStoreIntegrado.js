@@ -16,10 +16,20 @@ function registarOperacao(op, nm, prc, qtd){
     historico.quantidade.push(qtd)
 }
 
-function mostrarHistorico(){
+function mostrarHistorico(){ //Função Criatividade
     for(let i = 0; i < historico.nome.length; i++){
         console.log(`Operação : ${historico.operação[i]} - Nome do produto : ${historico.nome[i]} - Preço : ${historico.preço[i]} € - Quantidade : ${historico.quantidade[i]}`)
     }
+}
+
+function mostrarVendas(){ //Função Criatividade
+    let somaVendas = 0;
+    for(let i = 0; i < historico.nome.length; i++){
+        if(historico.operação[i] === "Venda"){
+            somaVendas += historico.preço[i]
+        }
+    }
+    console.log(`Total de vendas = ${somaVendas} €`)
 }
 
 
@@ -50,12 +60,12 @@ class Produto {
         registarOperacao("Reposicão de stock",this.nome, this.preco*unidades, unidades)
     };
 
-    devolucao(unidades) {
+    devolucao(unidades) { //Função Criatividade
         this.quantidade += unidades;
         registarOperacao("Devolução",this.nome, this.preco*unidades, unidades)
     };
 
-    quebras(unidades) {
+    quebras(unidades) { //Função Criatividade
         this.quantidade -= unidades;
         registarOperacao("Quebras",this.nome, 0, -unidades) //preço a 0 porque não é venda, é produto defeituoso ou partido.
     };
@@ -116,7 +126,7 @@ class Inventario{
         }
     };
         
-    mostrarStock(){
+    mostrarStock(){ //Função Criatividade
         const tabela = []
         for(let unidade in this.produtos){
             tabela.push({
@@ -131,17 +141,20 @@ class Inventario{
 const totalProdutos = new Inventario([portatil, desktop, rato, monitor, teclado]);
 
 
-rato.registarVenda(3)
-rato.registarVenda(5)
-monitor.registarVenda(1)
-portatil.registarVenda(10)
-mostrarHistorico()
+function main(){
+    rato.registarVenda(3)
+    rato.registarVenda(5)
+    monitor.registarVenda(1)
+    portatil.registarVenda(10)
+    mostrarHistorico()
+    mostrarVendas()
+    totalProdutos.premium()
+    totalProdutos.valorInventario()
+    totalProdutos.limpezaStock()
+    totalProdutos.filtroCategoria("Computadores")
+    totalProdutos.mostrarStock()
+    portatil.registarVenda(2)
+    totalProdutos.mostrarStock()
+}
 
-/*
-totalProdutos.premium()
-totalProdutos.valorInventario()
-totalProdutos.limpezaStock()
-totalProdutos.filtroCategoria("Computadores")
-totalProdutos.mostrarStock()
-portatil.registarVenda(2)
-totalProdutos.mostrarStock() */
+
