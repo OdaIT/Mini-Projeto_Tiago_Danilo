@@ -2,7 +2,7 @@
 
 //Opção 1: TechStore (Gestão de Inventário)
 
-class Inventario{
+class Produto{
     constructor(nome, preco, quantidade, categoria){
         this.nome = nome;
         this.preco = preco;
@@ -20,12 +20,12 @@ class Inventario{
     quebras(){}
     desconto(){}
 }
-const portatil = new Inventario()
+const portatil = new Produto()
 
-class Historico{
-    constructor(produto){
+class Inventario{
+    constructor(array){
+        this.produtos = array;
         this.historico = [];
-        this.produto = produto;
     }
 }
 
