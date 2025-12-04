@@ -18,7 +18,7 @@ function registarOperacao(op, nm, prc, qtd){
 
 function mostrarHistorico(){
     for(let i = 0; i < historico.nome.length; i++){
-        console.log(`Operação : ${historico.operação} - Nome do produto : ${historico.nome} - Preço : ${historico.preço} € - Quantidade : ${historico.quantidade}`)
+        console.log(`Operação : ${historico.operação[i]} - Nome do produto : ${historico.nome[i]} - Preço : ${historico.preço[i]} € - Quantidade : ${historico.quantidade[i]}`)
     }
 }
 
@@ -39,7 +39,7 @@ class Produto {
     registarVenda(unidades) {
         if(this.quantidade >= unidades){
             this.quantidade -= unidades;
-            registarOperacao("Venda",this.nome, this.preco, -unidades)
+            registarOperacao("Venda",this.nome, this.preco*unidades, -unidades)
         }else{
             console.error(`Quantidade indisponível.\nEm stock - ${this.quantidade}`)
         }
@@ -47,12 +47,12 @@ class Produto {
 
     reporStock(unidades) {
         this.quantidade += unidades;
-        registarOperacao("Reposicão de stock",this.nome, this.preco, unidades)
+        registarOperacao("Reposicão de stock",this.nome, this.preco*unidades, unidades)
     };
 
     devolucao(unidades) {
         this.quantidade += unidades;
-        registarOperacao("Devolução",this.nome, this.preco, unidades)
+        registarOperacao("Devolução",this.nome, this.preco*unidades, unidades)
     };
 
     quebras(unidades) {
@@ -132,9 +132,9 @@ const totalProdutos = new Inventario([portatil, desktop, rato, monitor, teclado]
 
 
 rato.registarVenda(3)
-rato.registarVenda(3)
+rato.registarVenda(5)
+monitor.registarVenda(1)
 portatil.registarVenda(10)
-console.table(historico)
 mostrarHistorico()
 
 /*
