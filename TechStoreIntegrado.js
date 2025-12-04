@@ -87,7 +87,7 @@ class Inventario{
     valorInventario() {
         let somaProdutos = 0;
         for (let artigo in this.produtos) {  //chatgpt sugeriu não usar in pois é má pratica, mas para os casos abaixo era a melhor opção pois necessitavamos do index e não do valor. E era para praticar o in em vez de usar o for default
-            if (this.produtos[artigo].quantidade > 0){
+            if (this.produtos[artigo].quantidade > 0) {
                 somaProdutos +=  this.produtos[artigo].preco * this.produtos[artigo].quantidade;
             } else {
                 console.log(`Sem stock de produtos.`);                
@@ -100,17 +100,17 @@ class Inventario{
         let maiorValor = this.produtos[0].preco;
         let nomeMaiorValor = this.produtos[0].nome;
         for (let unidade in this.produtos) {
-            if (this.produtos[unidade].preco > maiorValor){
+            if (this.produtos[unidade].preco > maiorValor) {
                 maiorValor = this.produtos[unidade].preco;
                 nomeMaiorValor = this.produtos[unidade].nome;
-            }
+            } 
         }
         console.log(`O produto de maior valor é ${nomeMaiorValor} com o preço de ${maiorValor} €.`)
     };
 
     limpezaStock() {
-        for (let unidade = this.produtos.length - 1; unidade >= 0; unidade--){  //o chatgpt sugeriu utilizar regressão pois caso um elemento fosse retirado na proxima vez que ele encontrasse um zero ele iria retirar o elemento errado, pois o array tinha mudado de tamanho. Alteração realizada
-            if (this.produtos[unidade].quantidade == 0){
+        for (let unidade = this.produtos.length - 1; unidade >= 0; unidade--) {  //o chatgpt sugeriu utilizar regressão pois caso um elemento fosse retirado na proxima vez que ele encontrasse um zero ele iria retirar o elemento errado, pois o array tinha mudado de tamanho. Alteração realizada
+            if (this.produtos[unidade].quantidade == 0) {
                 console.log(`O produto ${this.produtos[unidade].nome} foi removido do inventário por não ter stock disponível.`)
                 this.produtos.splice(unidade,1);
             }
@@ -118,8 +118,8 @@ class Inventario{
     };
 
     limpezaStock2() { 
-        for (let unidade = this.produtos.length; unidade > 0; unidade--){  //Erro/Bug, indíce tem de começar em 0. Temos de subtrair o length em -1 e também igualar a condição a 0 
-            if (this.produtos[unidade].quantidade == 0){
+        for (let unidade = this.produtos.length; unidade > 0; unidade--) {  //Erro/Bug, indíce tem de começar em 0. Temos de subtrair o length em -1 e também igualar a condição a 0 
+            if (this.produtos[unidade].quantidade == 0) {
                 console.log(`O produto ${this.produtos[unidade].nome} foi removido do inventário por não ter stock disponível.`)
                 this.produtos.splice(unidade,1);
             }
@@ -129,7 +129,7 @@ class Inventario{
     filtroCategoria(categoriaEscolhida) {
         let catExiste = 0;
         for (let unidade in this.produtos) {
-            if (this.produtos[unidade].categoria === categoriaEscolhida){
+            if (this.produtos[unidade].categoria === categoriaEscolhida) {
                 catExiste ++;
                 console.log(`Nome do produto : ${this.produtos[unidade].nome} -> Categoria : ${this.produtos[unidade].categoria}`) 
             }
@@ -172,4 +172,4 @@ function main() {
     totalProdutos.mostrarStock()
 }
 
-main();
+main(); 
