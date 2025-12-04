@@ -47,7 +47,7 @@ class Produto {
     };
 
     registarVenda(unidades) {
-        if (this.quantidade >= unidades){
+        if (this.quantidade >= unidades) {
             this.quantidade -= unidades;
             registarOperacao("Venda", this.nome, this.preco*unidades, -unidades)
         } else {
