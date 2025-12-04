@@ -16,13 +16,13 @@ function registarOperacao(op, nm, prc, qtd) {
     historico.quantidade.push(qtd)
 }
 
-function mostrarHistorico(){ //Função Criatividade
+function mostrarHistorico() { //Função Criatividade
     for (let i = 0; i < historico.nome.length; i++) {
         console.log(`Operação : ${historico.operação[i]} - Nome do produto : ${historico.nome[i]} - Preço : ${historico.preco[i]} € - Quantidade : ${historico.quantidade[i]}`)
     }
 }
 
-function mostrarVendas(){ //Função Criatividade
+function mostrarVendas() { //Função Criatividade
     let somaVendas = 0;
     for (let i = 0; i < historico.nome.length; i++) {
         if (historico.operação[i] === "Venda"){
@@ -49,7 +49,7 @@ class Produto {
     registarVenda(unidades) {
         if (this.quantidade >= unidades){
             this.quantidade -= unidades;
-            registarOperacao("Venda",this.nome, this.preco*unidades, -unidades)
+            registarOperacao("Venda", this.nome, this.preco*unidades, -unidades)
         } else {
             console.error(`Quantidade indisponível.\nEm stock - ${this.quantidade}`)
         }
@@ -57,17 +57,17 @@ class Produto {
 
     reporStock(unidades) {
         this.quantidade += unidades;
-        registarOperacao("Reposicão de stock",this.nome, this.preco*unidades, unidades)
+        registarOperacao("Reposicão de stock", this.nome, this.preco*unidades, unidades)
     };
 
     devolucao(unidades) { //Função Criatividade
         this.quantidade += unidades;
-        registarOperacao("Devolução",this.nome, this.preco*unidades, unidades)
+        registarOperacao("Devolução", this.nome, this.preco*unidades, unidades)
     };
 
     quebras(unidades) { //Função Criatividade
         this.quantidade -= unidades;
-        registarOperacao("Quebras",this.nome, 0, -unidades) //preço a 0 porque não é venda, é produto defeituoso ou partido.
+        registarOperacao("Quebras", this.nome, 0, -unidades) //preço a 0 porque não é venda, é produto defeituoso ou partido.
     };
 
 }
@@ -86,9 +86,11 @@ class Inventario{
 
     valorInventario() {
         let somaProdutos = 0;
-        for (let artigo in this.produtos) {//chatgtp sugeriu não usar in pois é má pratica, mas para os casos abaixo era a melhor opção pois necessitavamos do index e não do valor. E era para praticar o in em vez de usar o for default
+        for (let artigo in this.produtos) {  //chatgpt sugeriu não usar in pois é má pratica, mas para os casos abaixo era a melhor opção pois necessitavamos do index e não do valor. E era para praticar o in em vez de usar o for default
             if (this.produtos[artigo].quantidade > 0){
                 somaProdutos +=  this.produtos[artigo].preco * this.produtos[artigo].quantidade;
+            } else {
+                console.log(`Sem stock de produtos.`);                
             }
         }
         console.log(`O valor total do stock é ${somaProdutos} €`);
@@ -107,7 +109,7 @@ class Inventario{
     };
 
     limpezaStock() {
-        for (let unidade = this.produtos.length - 1; unidade >= 0; unidade--){  //o chatgtp sugeriu utilizar regressão pois caso um elemento fosse retirado na proxima vez que ele encontrasse um zero ele iria retirar o elemento errado, pois o array tinha mudado de tamanho. Alteração realizada
+        for (let unidade = this.produtos.length - 1; unidade >= 0; unidade--){  //o chatgpt sugeriu utilizar regressão pois caso um elemento fosse retirado na proxima vez que ele encontrasse um zero ele iria retirar o elemento errado, pois o array tinha mudado de tamanho. Alteração realizada
             if (this.produtos[unidade].quantidade == 0){
                 console.log(`O produto ${this.produtos[unidade].nome} foi removido do inventário por não ter stock disponível.`)
                 this.produtos.splice(unidade,1);
@@ -115,8 +117,8 @@ class Inventario{
         }
     };
 
-    limpezaStock2() { //Erro/Bug, indíce tem de começar em 0
-        for (let unidade = this.produtos.length; unidade > 0; unidade--){  //o chatgtp sugeriu utilizar regressão pois caso um elemento fosse retirado na proxima vez que ele encontrasse um zero ele iria retirar o elemento errado, pois o array tinha mudado de tamanho. Alteração realizada
+    limpezaStock2() { 
+        for (let unidade = this.produtos.length; unidade > 0; unidade--){  //Erro/Bug, indíce tem de começar em 0. Temos de subtrair o length em -1 e também igualar a condição a 0 
             if (this.produtos[unidade].quantidade == 0){
                 console.log(`O produto ${this.produtos[unidade].nome} foi removido do inventário por não ter stock disponível.`)
                 this.produtos.splice(unidade,1);
@@ -163,6 +165,8 @@ function main() {
     totalProdutos.valorInventario()
     totalProdutos.limpezaStock()
     totalProdutos.filtroCategoria("Computadores")
+    totalProdutos.filtroCategoria("Complutadores")
+    totalProdutos.filtroCategoria("Periféricos")
     totalProdutos.mostrarStock()
     portatil.registarVenda(2)
     totalProdutos.mostrarStock()
