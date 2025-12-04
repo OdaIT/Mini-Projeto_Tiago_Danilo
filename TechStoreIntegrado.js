@@ -9,7 +9,7 @@ const historico = {
         quantidade : [] 
 }
 
-function registarOperacao(op, nm, prc, qtd){
+function registarOperacao(op, nm, prc, qtd) {
     historico.operação.push(op)
     historico.nome.push(nm)
     historico.preço.push(prc)
@@ -24,7 +24,7 @@ function mostrarHistorico(){ //Função Criatividade
 
 function mostrarVendas(){ //Função Criatividade
     let somaVendas = 0;
-    for(let i = 0; i < historico.nome.length; i++){
+    for(let i = 0; i < historico.nome.length; i++) {
         if(historico.operação[i] === "Venda"){
             somaVendas += historico.preço[i]
         }
@@ -35,7 +35,7 @@ function mostrarVendas(){ //Função Criatividade
 
 class Produto {
 
-    constructor(nome, preco, quantidade, categoria){
+    constructor(nome, preco, quantidade, categoria) {
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
@@ -79,10 +79,12 @@ const teclado = new Produto("Teclado", 20, 0, "Periféricos");
 
 
 class Inventario{
-    constructor(array){
+
+    constructor(array) {
         this.produtos = array;
     }
-    valorInventario(){
+
+    valorInventario() {
         let somaProdutos = 0;
         for(let artigo in this.produtos){//chatgtp sugeriu não usar in pois é má pratica, mas para os casos abaixo era a melhor opção pois necessitavamos do index e não do valor. E era para praticar o in em vez de usar o for default
             if (this.produtos[artigo].quantidade > 0){
@@ -92,7 +94,7 @@ class Inventario{
         console.log(`O valor total do stock é ${somaProdutos} €`);
     };
 
-    premium(){
+    premium() {
         let maiorValor = this.produtos[0].preco;
         let nomeMaiorValor = this.produtos[0].nome;
         for(let unidade in this.produtos){
@@ -104,8 +106,8 @@ class Inventario{
         console.log(`O produto de maior valor é ${nomeMaiorValor} com o preço de ${maiorValor} €.`)
     };
 
-    limpezaStock(){
-        for(let unidade = this.produtos.length; unidade > 0; unidade--){  //o chatgtp sugeriu utilizar regressão pois caso um elemento fosse retirado na proxima vez que ele encontrasse um zero ele iria retirar o elemento errado, pois o array tinha mudado de tamanho. Alteração realizada
+    limpezaStock() {
+        for(let unidade = this.produtos.length - 1; unidade >= 0; unidade--){  //o chatgtp sugeriu utilizar regressão pois caso um elemento fosse retirado na proxima vez que ele encontrasse um zero ele iria retirar o elemento errado, pois o array tinha mudado de tamanho. Alteração realizada
             if (this.produtos[unidade].quantidade == 0){
                 console.log(`O produto ${this.produtos[unidade].nome} foi removido do inventário por não ter stock disponível.`)
                 this.produtos.splice(unidade,1);
@@ -113,22 +115,22 @@ class Inventario{
         }
     };
 
-    filtroCategoria(categoriaEscolhida){
+    filtroCategoria(categoriaEscolhida) {
         let catExiste = 0;
-        for(let unidade in this.produtos){
+        for(let unidade in this.produtos) {
             if (this.produtos[unidade].categoria === categoriaEscolhida){
                 catExiste ++;
                 console.log(`Nome do produto : ${this.produtos[unidade].nome} -> Categoria : ${this.produtos[unidade].categoria}`) 
             }
         }
-        if (catExiste == 0){
+        if (catExiste == 0) {
             console.log(`A categoria ${categoriaEscolhida} não existe ou está mal escrita.`)
         }
     };
         
     mostrarStock(){ //Função Criatividade
         const tabela = []
-        for(let unidade in this.produtos){
+        for(let unidade in this.produtos) {
             tabela.push({
                 nome : this.produtos[unidade].nome,
                 preço : this.produtos[unidade].preco,
@@ -157,4 +159,4 @@ function main(){
     totalProdutos.mostrarStock()
 }
 
-
+main();
