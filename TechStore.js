@@ -11,10 +11,6 @@ class Produto{
     }
     atualizarPreço(){}
     registarVenda(){}
-    valorIventario(){}
-    limpezaStock(){}
-    filtroCategoria(){}
-    premium(){}
     reporStock(){}
     devolucao(){}
     quebras(){}
@@ -27,5 +23,9 @@ class Inventario{
         this.produtos = array;
         this.historico = [];
     }
+    valorIventario(){}
+    premium(){}
+    limpezaStock(){}
+    filtroCategoria(){}
 }
 
