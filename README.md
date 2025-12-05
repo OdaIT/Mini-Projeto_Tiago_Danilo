@@ -11,20 +11,22 @@
 ## Abrir ficheiro TechStore.js e executar função main();
 
 # **Estruturas de dados escolhidas e justificação da adequação** 
-## Escolhemos usar Classes pois achamos mais claro para criar múltiplas instâncias com as mesmas características.
+## Escolhemos usar Classes pois achamos mais claro para criar múltiplas instâncias com as mesmas características. No histórico escolhemos um array por uma questão de simplificação.
 
 # **Descrição das 4 operações escolhidas e justificação da adequação** 
 ## 1. **Função Devolução:** Mostrar retorno de stock em caso de devolução por parte do cliente. Objetivo de diferenciar de reposição de stock nos logs/histórico.
-## 2. **Função Quebras:** Mostrar diminuição de stock com valor a 0 dado que artigos podem estragar-se em loja sem serem vendidos. Objetivo de diferenciar de uma venda nos logs/histórico.
+## 2. **Função Quebras:** Mostrar diminuição de stock com preço a 0 dado que artigos podem estragar-se em loja sem serem vendidos. Objetivo de diferenciar de uma venda nos logs/histórico.
 ## 3. **Função Mostrar Stock:** Mostrar registo total de stock para uma melhor visão global e gestão da loja. 
 ## 4. **Função Mostrar Vendas:** Mostrar registo total de vendas para analisar valores brutos de vendas.
-## 5. **Função Mostrar Histórico:** Mostrar registo das transações para análise futura.
+## 5. **Função Mostrar Histórico:** Mostrar registo das transações para análise futura. Inclui todas as operações sobre produtos, excepto alteração de preço e limpeza de stock.
 
 # **Descrição do bug escolhido, justificação da relevância e de como solucionar** 
 ## **TypeError** linha 121, indíce tem de começar em 0. Temos de subtrair o length em -1 e também igualar a condição a 0. Solução na linha 112. Escolhemos este bug pois revelou-se num erro inicial da nossa parte, algo fácil de não prestar atenção devido ao length e indíce começarem em valores diferentes e não ser imediatamente óbvio. 
 ## **Representação do bug encontrado:** <br>
 <img width="428" height="108" alt="Bug" src="https://github.com/user-attachments/assets/e350a999-a9ef-45fa-84a6-efafdb7be7f3" /> <br>
+
 # **Fluxograma Valor de Inventário:** <br>
 <img width="520" height="703" alt="Fluxograma Valor Inventario drawio" src="https://github.com/user-attachments/assets/8911d378-a1b6-4be7-b1d6-a09e3bfc0c52" /> <br>
+
 # **Fluxograma Atualizar Preço:** <br>
 <img width="243" height="552" alt="Fluxograma Atualizar Preço drawio" src="https://github.com/user-attachments/assets/08d369c0-5184-4a9f-a2b0-ee28f8cb01dc" />
