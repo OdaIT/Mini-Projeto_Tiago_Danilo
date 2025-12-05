@@ -9,11 +9,11 @@
 # **Estruturas de dados escolhidas e justificação da adequação:**
 
 # **Descrição das 4 operações escolhidas e justificação da adequação:** 
-## 1. Função Devolução: Mostrar retorno de stock em caso de devolução por parte do cliente. Objetivo de diferenciar de reposição de stock nos logs/histórico.
-## 2. Função Quebras: Mostrar diminuição de stock com valor a 0 dado que artigos podem estragar-se em loja sem serem vendidos. Objetivo de diferenciar de uma venda nos logs/histórico.
-## 3. Função Mostrar Stock: Mostrar total de stock para uma melhor visão global e gestão da loja. 
-## 4. Função Mostrar Vendas: Mostrar total de vendas para analisar valores brutos de vendas.
-## 5. Função Mostrar Histórico: Mostrar histórico das transações para análise futura.
+## 1. **Função Devolução:** Mostrar retorno de stock em caso de devolução por parte do cliente. Objetivo de diferenciar de reposição de stock nos logs/histórico.
+## 2. **Função Quebras:** Mostrar diminuição de stock com valor a 0 dado que artigos podem estragar-se em loja sem serem vendidos. Objetivo de diferenciar de uma venda nos logs/histórico.
+## 3. **Função Mostrar Stock:** Mostrar total de stock para uma melhor visão global e gestão da loja. 
+## 4. **Função Mostrar Vendas:** Mostrar total de vendas para analisar valores brutos de vendas.
+## 5. **Função Mostrar Histórico:** Mostrar histórico das transações para análise futura.
 
 # **Descrição do bug escolhido, justificação da relevância e de como solucionar:** 
 ## **TypeError:** linha 121, indíce tem de começar em 0. Temos de subtrair o length em -1 e também igualar a condição a 0. Solução na linha 112. Escolhemos este bug pois revelou-se num erro inicial da nossa parte, algo fácil de não prestar atenção devido ao length e indíce começarem em valores diferentes e não ser imediatamente óbvio. 
